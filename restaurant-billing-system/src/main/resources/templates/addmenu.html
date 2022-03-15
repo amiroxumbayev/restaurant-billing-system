@@ -1,0 +1,68 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:
+	th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Add item</title>
+<link rel="stylesheet" th:href="@{/css/styles.css}" />
+<div th:replace="fragments/header :: header-css"/>
+</head>
+<body>
+<div th:replace="fragments/header :: header"/>
+	<h1>Add menu item</h1>
+	<form class="form-group" method="POST" th:action="@{/admin/menueditor/addmenu}" th:object="${newitem}">
+		<table width="50%">
+			<tr>
+                <td><label for="title">Title: </label></td>
+                <td>
+                <input class="form-control" type="text" th:field="*{title}" /></td>
+                <td>
+                    <span
+                       class="validationError" th:if="${#fields.hasErrors('title')}"
+                       th:errors="*{title}">error
+                    </span>
+                 </td>
+            </tr>
+			<tr>
+				<td><label for="price">Price: </label></td>
+				<td>
+				    <input class="form-control" type="number" min=0 th:field="*{price}" />
+			     </td>
+			     <td>
+                    <span
+                       class="validationError" th:if="${#fields.hasErrors('price')}"
+                       th:errors="*{price}">error
+                    </span>
+			     </td>
+			</tr>
+			<tr>
+				<td>
+				    <label for="type">Type: </label></td>
+				<td>
+				<div class="form-check" >
+                    <input class="form-check-input" name="soup" type="radio" value="soup" th:field="*{type}"><label class="form-check-label">Soup</label>
+                    </div>
+                    <div class="form-check" >
+                    <input class="form-check-input" name="apperizer" type="radio" value="apperizer" th:field="*{type}"><label class="form-check-label">Apperizer</label>
+                    </div><div class="form-check" >
+                    <input class="form-check-input" name="salad" type="radio" value="salad" th:field="*{type}"><label class="form-check-label">Salad</label>
+                    </div><div class="form-check" >
+                    <input class="form-check-input" name="main" type="radio" value="main" th:field="*{type}"><label class="form-check-label">Main</label>
+                    </div><div class="form-check" >
+                    <input class="form-check-input" name="dessert" type="radio" value="dessert" th:field="*{type}"><label class="form-check-label">Dessert</label></div>
+                </td>
+                <td>
+                    <span
+                       class="validationError" th:if="${#fields.hasErrors('type')}"
+                       th:errors="*{type}">error
+                    </span>
+                 </td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input class="btn btn-primary" type="submit" value="Save item" /></td>
+			</tr>
+		</table>
+	</form>
+	<div th:replace="fragments/footer :: footer"/>
+</body>
+</html>

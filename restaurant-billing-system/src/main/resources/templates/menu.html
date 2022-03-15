@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:
+	th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Restaurant</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+    <div th:replace="fragments/header :: header-css"/>
+</head>
+<body>
+<div th:replace="fragments/header :: header"/>
+    <h1>Menu</h1>
+    <img th:src="@{/images/tacoCloud.png}" />
+    
+    <form method="POST" th:object="${menuOrder}">
+        <div class="grid">
+            <div class="menu-group" id="soups">
+                <h3>Soups:</h3>
+                <div th:each="menu : ${soup}">
+                    <input th:field="*{menus}" type="checkbox"
+                            th:value="${menu.id}" />
+                    <span th:text="${menu.title}">TITLE</span>
+                    <label th:for="quantity">Quantity (between 1 and 100):</label>
+                    <input th:type="number" th:id="quantity" th:name="quantity" th:min="1" th:max="100">
+                </div>
+            </div>
+        </div>
+
+        <span class="validationError"
+            th:if="${#fields.hasErrors('ingredients')}"
+            th:errors="*{ingredients}">error
+        </span>
+        
+        <div>
+            <h3>Create order:</h3>
+            <input type="text" th:field="*{tableNumber}" />
+            <span class="validationError"
+            th:if="${#fields.hasErrors('tableNumber')}"
+            th:errors="*{tableNumber}">error
+            </span>
+            <br/>
+            <button>Submit order</button>
+        </div>
+    </form>
+    <div th:replace="fragments/footer :: footer"/>
+</body>
+</html>

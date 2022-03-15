@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:
+    th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin panel</title>
+    <div th:replace="fragments/header :: header-css"/>
+</head>
+<body>
+<div th:replace="fragments/header :: header"/>
+    <h1>Admin panel</h1>
+    
+    <form method="GET" th:action="@{/admin/menueditor}">
+	    <div class="form-group text-center">
+	        <input class="btn btn-primary" type="submit" value="Enter menu editor"/>
+	    </div>
+    </form>
+    <div th:replace="fragments/footer :: footer"/>
+</body>
+</html>

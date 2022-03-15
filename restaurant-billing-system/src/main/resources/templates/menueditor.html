@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:
+	th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Menu Editor</title>
+<div th:replace="fragments/header :: header-css" />
+</head>
+<body>
+	<div th:replace="fragments/header :: header" />
+	<h1>Menu table</h1>
+	
+    <form method="GET" th:action="@{/admin/menueditor/addmenu}">
+        <input class = "btn btn-lg btn-secondary" type="submit" value="Add menu item" />
+    </form>
+    
+	<h2>Soup</h2>
+	<table class="table table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">Id</th>
+				<th scope="col">Title</th>
+				<th scope="col">Price</th>
+				<th scope="col">Edit</th>
+				<th scope="col">Delete</th>
+			</tr>
+		</thead>
+		<div th:each="menu : ${soup}">
+			<tr>
+				<td scope="row" th:text="${menu.id}">null</td>
+				<td th:text="${menu.title}">null</td>
+				<td th:text="${menu.price}">null</td>
+				<td><a class="btn btn-secondary"
+					th:href="'/admin/menueditor/updatemenu/'+${menu.id}">Update</a></td>
+				<td><a class="btn btn-secondary"
+					th:href="'/admin/menueditor/deletemenu/'+${menu.id}">Delete</a></td>
+			</tr>
+		</div>
+	</table>
+	<h2>Appetizer</h2>
+	<table class="table table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">Id</th>
+				<th scope="col">Title</th>
+				<th scope="col">Price</th>
+				<th scope="col">Edit</th>
+				<th scope="col">Delete</th>
+			</tr>
+		</thead>
+		<div th:each="menu : ${appetizer}">
+		<tr>
+			<td scope="row" th:text="${menu.id}">null</td>
+			<td th:text="${menu.title}">null</td>
+			<td th:text="${menu.price}">null</td>
+			<td><a class="btn btn-secondary"
+				th:href="'/admin/menueditor/updatemenu/'+${menu.id}">Update</a></td>
+			<td><a class="btn btn-secondary"
+				th:href="'/admin/menueditor/deletemenu/'+${menu.id}">Delete</a></td>
+		</tr>
+		</div>
+	</table>
+	<h2>Salad</h2>
+	<table class="table table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">Id</th>
+				<th scope="col">Title</th>
+				<th scope="col">Price</th>
+				<th scope="col">Edit</th>
+				<th scope="col">Delete</th>
+			</tr>
+		</thead>
+		<div th:each="menu : ${salad}">
+		<tr>
+			<td scope="row" th:text="${menu.id}">null</td>
+			<td th:text="${menu.title}">null</td>
+			<td th:text="${menu.price}">null</td>
+			<td><a class="btn btn-secondary"
+				th:href="'/admin/menueditor/updatemenu/'+${menu.id}">Update</a></td>
+			<td><a class="btn btn-secondary"
+				th:href="'/admin/menueditor/deletemenu/'+${menu.id}">Delete</a></td>
+		</tr>
+		</div>
+	</table>
+	<h2>Main</h2>
+	<table class="table table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">Id</th>
+				<th scope="col">Title</th>
+				<th scope="col">Price</th>
+				<th scope="col">Edit</th>
+				<th scope="col">Delete</th>
+			</tr>
+		</thead>
+		<div th:each="menu : ${main}">
+			<tr>
+				<td scope="row" th:text="${menu.id}">null</td>
+				<td th:text="${menu.title}">null</td>
+				<td th:text="${menu.price}">null</td>
+				<td><a class="btn btn-secondary"
+					th:href="'/admin/menueditor/updatemenu/'+${menu.id}">Update</a></td>
+				<td><a class="btn btn-secondary"
+					th:href="'/admin/menueditor/deletemenu/'+${menu.id}">Delete</a></td>
+			</tr>
+		</div>
+	</table>
+	<h2>Dessert</h2>
+	<table class="table table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">Id</th>
+				<th scope="col">Title</th>
+				<th scope="col">Price</th>
+				<th scope="col">Edit</th>
+				<th scope="col">Delete</th>
+			</tr>
+		</thead>
+		<div th:each="menu : ${dessert}">
+			<tr>
+				<td scope="row" th:text="${menu.id}">null</td>
+				<td th:text="${menu.title}">null</td>
+				<td th:text="${menu.price}">null</td>
+				<td><a class="btn btn-secondary"
+					th:href="'/admin/menueditor/updatemenu/'+${menu.id}">Update</a></td>
+				<td><a class="btn btn-secondary"
+					th:href="'/admin/menueditor/deletemenu/'+${menu.id}">Delete</a></td>
+			</tr>
+		</div>
+	</table>
+	
+	<div th:replace="fragments/footer :: footer" />
+</body>
+</html>

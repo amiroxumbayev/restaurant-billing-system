@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Restaurant</title>
+<div th:replace="fragments/header :: header-css" />
+</head>
+<body>
+
+	<div th:replace="fragments/header :: header" />
+
+	<div class="container">
+
+		<div class="starter-template">
+			<h1>Choose mode</h1>
+			<h2>
+				1. Visit <a th:href="@{/admin}">Admin page (Need Admin Role)</a>
+			</h2>
+			<h2>
+				2. Visit <a th:href="@{/user}">User page (Need User Role)</a>
+			</h2>
+		</div>
+
+	</div>
+
+	<div th:replace="fragments/footer :: footer" />
+</body>
+</html>
