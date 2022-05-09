@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Restaurant</title>
+<div th:replace="fragments/header :: header-css" />
+</head>
+<body>
+	<div th:replace="fragments/header :: header" />
+	<div class="container">
+	    
+		<div class="row">
+			<div th:replace="fragments/usernavbar :: usernavbar" />
+			<div class="col-md-4">
+				<img class="img-tables" th:src="@{/images/empty.svg}" />
+			</div>
+		</div>
+	</div>
+	<div th:replace="fragments/footer :: footer" />
+</body>
+</html>

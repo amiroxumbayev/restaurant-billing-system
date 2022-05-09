@@ -1,12 +1,10 @@
-package com.example.restaurantbillingsystem.config;
+package com.example.restaurantbillingsystem.web;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import com.example.restaurantbillingsystem.web.StringToTypeConverter;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer{
@@ -19,6 +17,7 @@ public class WebConfig implements WebMvcConfigurer{
     @Override
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter(new StringToTypeConverter());
+        registry.addConverter(new StringToStatusConverter());
     }
     
 }

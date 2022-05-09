@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Restaurant</title>
+<div th:replace="fragments/header :: header-css" />
+</head>
+<body>
+    <div th:replace="fragments/header :: header" />
+    <div class = "container">
+        <div th:replace="fragments/usernavbar :: usernavbar" />
+	    <table class="table table-striped">
+	        <thead class="thead-dark">
+	            <tr>
+	                <th scope="col">Id</th>
+	                <th scope="col">Placed at</th>
+	                <th scope="col">Status</th>
+	                <th scope="col">Table number</th>
+	                <th scope="col">Total price</th>
+	                <th scope="col">Items</th>
+	            </tr>
+	        </thead>
+	        <div th:each="order : ${orders}">
+	            <tr>
+	                <td scope="row" th:text="${order.id}">null</td>
+	                <td th:text="${order.placedAt}">null</td>
+	                <td th:text="${order.status}">null</td>
+	                <td th:text="${order.tableNumber}">null</td>
+	                <td th:text="${order.totalPrice}">null</td>
+	                <td><a class="btn btn-secondary"
+	                    th:href="'/orders/order-items/'+${order.id}">Show</a></td>
+	            </tr>
+	        </div>
+	    </table>
+    </div>
+    <div th:replace="fragments/footer :: footer" />
+</body>
+</html>

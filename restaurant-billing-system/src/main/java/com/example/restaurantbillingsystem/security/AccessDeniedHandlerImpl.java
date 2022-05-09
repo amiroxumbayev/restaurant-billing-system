@@ -1,4 +1,4 @@
-package com.example.restaurantbillingsystem.web;
+package com.example.restaurantbillingsystem.security;
 
 import java.io.IOException;
 

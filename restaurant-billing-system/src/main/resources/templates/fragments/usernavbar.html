@@ -1,0 +1,36 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+</head>
+<body>
+	<div th:fragment="usernavbar">
+
+		<div class="list-group">
+			<!-- <a th:href="@{/main-dining}" class="list-group-item">Tables</a> -->
+			<a th:href="@{/orders}" class="list-group-item">Orders</a>
+			<a th:href="@{/order}" class="list-group-item">Create order</a>
+            <!--
+			<div class="row">
+				<div id="custom-search-input">
+				    <div class="col-md-5">
+                    </div>
+                        <form method="GET" th:action="@{'/orders'}">
+							<div class="input-group col-md-3">
+									<input type="text" class="  search-query form-control"
+										placeholder="Search" th:value="${keyword}" />
+									<span class="input-group-btn">
+										<button class="btn btn-primary" type="submit">
+											<span class=" glyphicon glyphicon-search"></span>
+										</button>
+									</span>
+							</div>
+                        </form>
+				</div>
+			</div>
+			-->
+		</div>
+
+	</div>
+</body>
+</html>

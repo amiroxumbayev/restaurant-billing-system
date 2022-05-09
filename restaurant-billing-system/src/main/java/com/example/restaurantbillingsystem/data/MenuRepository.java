@@ -1,18 +1,9 @@
 package com.example.restaurantbillingsystem.data;
 
-import java.util.Optional;
+import org.springframework.data.repository.CrudRepository;
 
-import com.example.restaurantbillingsystem.Menu;
+import com.example.restaurantbillingsystem.domain.Menu;
 
-public interface MenuRepository {
-
-    Iterable<Menu> findAll();
+public interface MenuRepository extends CrudRepository<Menu, Long>{
     
-    Optional<Menu> findById(int id);
-    
-    Menu save(Menu menu);
-    
-    int update(int id, Menu menu);
-    
-    int delete(int id);
 }

@@ -8,7 +8,7 @@ public class HomeController {
 
     @GetMapping("/user")
     public String userIndex() {
-        return "home";
+        return "redirect:/orders";
     }
 
     @GetMapping("/login")

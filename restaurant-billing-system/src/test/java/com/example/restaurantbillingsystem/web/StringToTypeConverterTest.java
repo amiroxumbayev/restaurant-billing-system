@@ -5,8 +5,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.jupiter.api.Test;
 
-import com.example.restaurantbillingsystem.Menu;
-import com.example.restaurantbillingsystem.Menu.Type;
+import com.example.restaurantbillingsystem.domain.Menu;
+import com.example.restaurantbillingsystem.domain.Menu.Type;
 
 class StringToTypeConverterTest {
 

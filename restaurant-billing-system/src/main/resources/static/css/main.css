@@ -12,6 +12,26 @@ h2 {
 	color: black;
 }
 
+.validationError {
+	color: red;
+}
+
+.img-tables {
+	height: 150px;
+	width: 150px;
+	object-fit: contain;
+}
+
+div.list-group:after {
+  clear: both;
+  display: block;
+  content: "";
+}
+
+.list-group-item {
+    float: left;
+}
+
 footer {
 	margin-top: 60px;
 }
