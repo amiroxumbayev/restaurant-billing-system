@@ -1,25 +1,20 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <div th:fragment="header-css">
-	<link rel="stylesheet" type="text/css"
-		href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
 	<link rel="stylesheet" th:href="@{/css/main.css}"/>
+	<link rel="stylesheet" th:href="@{/css/styles.css}"/>
+	<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 </div>
 </head>
 <body>
 	<div th:fragment="header">
-		<nav class="navbar navbar-inverse">
-			<div class="container">
-				<div class="navbar-header">
-					<a class="navbar-brand" th:href="@{/}">Restaurant</a>
-				</div>
-				<div id="navbar" class="collapse navbar-collapse">
-					<ul class="nav navbar-nav">
-						<li class="active"><a th:href="@{/}">Home</a></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
+		
+		<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <!-- Navbar Brand-->
+            <a class="navbar-brand ps-3" th:href="@{/}">Restaurant system</a>
+            <!-- Sidebar Toggle-->
+            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+        </nav>
 	</div>
 
 </body>

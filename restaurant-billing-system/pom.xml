@@ -85,8 +85,9 @@
                 <configuration>
                     <excludes>
                         <exclude>com/example/restaurantbillingsystem/RestaurantBillingSystemApplication.class</exclude>
-                        <exclude>com/example/restaurantbillingsystem/Menu.class</exclude>
-                        <exclude>com/example/restaurantbillingsystem/MenuOrder.class</exclude>
+                        <exclude>com/example/restaurantbillingsystem/domain/*</exclude>
+                        <exclude>com/example/restaurantbillingsystem/domain/chart/*</exclude>
+                        <exclude>com/example/restaurantbillingsystem/security/RegistrationForm.class</exclude>
                         <exclude>com/example/restaurantbillingsystem/Menu$Type.class</exclude>
                     </excludes>
                 </configuration>

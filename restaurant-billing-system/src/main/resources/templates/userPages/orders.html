@@ -6,33 +6,93 @@
 <div th:replace="fragments/header :: header-css" />
 </head>
 <body>
-    <div th:replace="fragments/header :: header" />
-    <div class = "container">
-        <div th:replace="fragments/usernavbar :: usernavbar" />
-	    <table class="table table-striped">
-	        <thead class="thead-dark">
-	            <tr>
-	                <th scope="col">Id</th>
-	                <th scope="col">Placed at</th>
-	                <th scope="col">Status</th>
-	                <th scope="col">Table number</th>
-	                <th scope="col">Total price</th>
-	                <th scope="col">Items</th>
-	            </tr>
-	        </thead>
-	        <div th:each="order : ${orders}">
-	            <tr>
-	                <td scope="row" th:text="${order.id}">null</td>
-	                <td th:text="${order.placedAt}">null</td>
-	                <td th:text="${order.status}">null</td>
-	                <td th:text="${order.tableNumber}">null</td>
-	                <td th:text="${order.totalPrice}">null</td>
-	                <td><a class="btn btn-secondary"
-	                    th:href="'/orders/order-items/'+${order.id}">Show</a></td>
-	            </tr>
-	        </div>
-	    </table>
-    </div>
-    <div th:replace="fragments/footer :: footer" />
+	<script th:inline="javascript">
+		const types = [[${map}]];
+		const annualReport = [[${annualreport}]];
+	</script>
+	<div th:replace="fragments/header :: header" />
+	<div id="layoutSidenav">
+		<div th:replace="fragments/sidenav :: user" />
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid px-4">
+					<h1 class="mt-4">Dashboard</h1>
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="card mb-4">
+								<div class="card-header">
+									<i class="fas fa-chart-pie me-1"></i> Popular stage
+								</div>
+								<div class="card-body">
+									<canvas id="pieChart" width="100%" height="50"></canvas>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-6">
+							<div class="card mb-4">
+								<div class="card-header">
+									<i class="fas fa-chart-bar me-1"></i> Annual report
+								</div>
+								<div class="card-body">
+									<canvas id="barChart" width="100%" height="50"></canvas>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card mb-4">
+						<div class="card-header">
+							<i class="fas fa-table me-1"></i> Registered users
+						</div>
+						<div class="card-body">
+							<table id="datatablesSimple">
+								<thead>
+									<tr>
+										<th scope="col">Id</th>
+										<th scope="col">Placed at</th>
+										<th scope="col">Status</th>
+										<th scope="col">Table number</th>
+										<th scope="col">Total price</th>
+										<th scope="col">Items</th>
+									</tr>
+								</thead>
+								<tfoot>
+									<tr>
+										<th scope="col">Id</th>
+										<th scope="col">Placed at</th>
+										<th scope="col">Status</th>
+										<th scope="col">Table number</th>
+										<th scope="col">Total price</th>
+										<th scope="col">Items</th>
+									</tr>
+								</tfoot>
+								<tbody>
+									<div th:each="order : ${orders}">
+										<tr>
+											<td scope="row" th:text="${order.id}">null</td>
+											<td th:text="${order.placedAt}">null</td>
+											<td th:text="${order.status}">null</td>
+											<td th:text="${order.tableNumber}">null</td>
+											<td th:text="${order.totalPrice}">null</td>
+											<td><a class="btn btn-secondary"
+												th:href="'/orders/order-items/'+${order.id}">Show</a></td>
+										</tr>
+									</div>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</main>
+		</div>
+	</div>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
+		crossorigin="anonymous"></script>
+	<script src="js/chart-bar.js"></script>
+	<script src="js/chart-pie.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
+		crossorigin="anonymous"></script>
+	<script src="js/datatables-simple.js"></script>
+	<div th:replace="fragments/footer :: footer" />
 </body>
 </html>

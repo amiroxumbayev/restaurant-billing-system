@@ -3,56 +3,75 @@
 <head>
 <meta charset="UTF-8">
 <title>Add item</title>
-<link rel="stylesheet" th:href="@{css/styles.css}" />
 <div th:replace="fragments/header :: header-css"/>
 </head>
 <body>
     <div th:replace="fragments/header :: header"/>
-    <h1>Update menu item</h1>
-    <form method="POST" th:action="@{'/admin/update-user/'+${user.userId}}" th:object="${user}">
-        <table width="50%">
-            <tr>
-                <td><label for="title">Name: </label></td>
-                <td>
-                <input type="text" th:field="*{name}"  th:value="*{name}"/></td>
-                <td>
-                    <span
-                       class="validationError" th:if="${#fields.hasErrors('name')}"
-                       th:errors="*{name}">error
-                    </span>
-                 </td>
-            </tr>
-            <tr>
-                <td><label for="price">Email: </label></td>
-                <td>
-                    <input type="text" th:field="*{email}" th:value="*{email}"/>
-                 </td>
-                 <td>
-                    <span
-                       class="validationError" th:if="${#fields.hasErrors('email')}"
-                       th:errors="*{email}">error
-                    </span>
-                 </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="type">Password: </label></td>
-                <td>
-                    <input type="text" th:field="*{password}" />
-                 </td>
-                 <td>
-                    <span
-                       class="validationError" th:if="${#fields.hasErrors('password')}"
-                       th:errors="*{password}">error
-                    </span>
-                 </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="submit" value="Save user" /></td>
-            </tr>
-        </table>
-    </form>
+    
+    <div id="layoutSidenav">
+        <div th:replace="fragments/sidenav :: admin" />
+        <div id="layoutSidenav_content">
+
+            <div id="layoutAuthentication">
+                <div id="layoutAuthentication_content">
+                    <main>
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-5">
+                                    <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                        <div class="card-header">
+                                            <h3 class="text-center font-weight-light my-4">Update user information</h3>
+                                        </div>
+                                        <div class="card-body">
+                                            <form method="POST" th:action="@{'/admin/update-user/'+${user.userId}}" th:object="${user}">
+                                                <div class="form-floating mb-3">
+                                                    <input type="text"
+                                                        class="form-control" id="inputName" placeholder="Name"
+                                                        th:field="*{name}"  th:value="*{name}">
+                                                        <label for="inputUsername">Username</label>
+                                                </div>
+                                                <div>
+                                                    <span class="validationError"
+                                                        th:if="${#fields.hasErrors('name')}" th:errors="*{name}">error
+                                                    </span>
+                                                </div>
+                                                <div class="form-floating mb-3">
+                                                    <input type="email"
+                                                        class="form-control" id="inputEmail4" placeholder="Email"
+                                                        th:field="*{email}" th:value="*{email}">
+                                                        <label for="inputEmail">Email</label>
+                                                </div>
+                                                <div>
+                                                    <span class="validationError"
+                                                        th:if="${#fields.hasErrors('email')}" th:errors="*{email}">error
+                                                    </span>
+                                                </div>
+                                                <div class="form-floating mb-3">
+                                                    <input
+                                                        type="password" class="form-control" id="inputPassword4"
+                                                        placeholder="Password" th:field="*{password}">
+                                                        <label for="inputPassword">Password</label>
+                                                </div>
+                                                <div>
+                                                    <span class="validationError"
+                                                        th:if="${#fields.hasErrors('password')}"
+                                                        th:errors="*{password}">error </span>
+                                                </div>
+                                                <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                                                    <input type="submit"
+                                                        class="btn btn-lg btn-primary btn-block" value="Save" />
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+    </div>
     <div th:replace="fragments/footer :: footer"/>
 </body>
 </html>

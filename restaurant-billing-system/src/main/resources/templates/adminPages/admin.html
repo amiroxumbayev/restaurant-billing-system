@@ -1,52 +1,70 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:
-    th="http://www.thymeleaf.org">
+	th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Admin panel</title>
-    <div th:replace="fragments/header :: header-css"/>
+<meta charset="UTF-8">
+<title>Admin panel</title>
+<div th:replace="fragments/header :: header-css" />
 </head>
 <body>
-<div th:replace="fragments/header :: header"/>
-    <h1>Admin panel</h1>
-    
-    <form method="GET" th:action="@{/admin/register}">
-        <div class="form-group text-center">
-            <input class="btn btn-primary" type="submit" value="Register new user"/>
-        </div>
-    </form>
-    
-    <form method="GET" th:action="@{/admin/menueditor}">
-	    <div class="form-group text-center">
-	        <input class="btn btn-primary" type="submit" value="Enter menu editor"/>
-	    </div>
-    </form>
-    
-    <div class = "container">
-    <h2>Registered users</h2>
-        <table class="table table-striped">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <div th:each="user : ${users}">
-                <tr>
-                    <td scope="row" th:text="${user.userId}">null</td>
-                    <td th:text="${user.name}">null</td>
-                    <td th:text="${user.email}">null</td>
-                    <td><a class="btn btn-secondary"
-                        th:href="'/admin/update-user/'+${user.userId}">Edit</a></td>
-                    <td><a class="btn btn-secondary"
-                        th:href="'/admin/delete-user/'+${user.userId}">Delete</a></td>
-                </tr>
-            </div>
-        </table>
-    </div>
-    <div th:replace="fragments/footer :: footer"/>
+	<div th:replace="fragments/header :: header" />
+
+	<div id="layoutSidenav">
+	   <div th:replace="fragments/sidenav :: admin" />
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid px-4">
+					<h1 class="mt-4">Dashboard</h1>
+					<div class="card mb-4">
+						<div class="card-header">
+							<i class="fas fa-table me-1"></i> Registered users
+						</div>
+						<div class="card-body">
+							<table id="datatablesSimple">
+								<thead>
+									<tr>
+										<th scope="col">Id</th>
+										<th scope="col">Name</th>
+										<th scope="col">Email</th>
+										<th scope="col"></th>
+										<th scope="col"></th>
+									</tr>
+								</thead>
+								<tfoot>
+									<tr>
+										<th scope="col">Id</th>
+										<th scope="col">Name</th>
+										<th scope="col">Email</th>
+										<th scope="col"></th>
+										<th scope="col"></th>
+									</tr>
+								</tfoot>
+								<tbody>
+									<div th:each="user : ${users}">
+										<tr>
+											<td scope="row" th:text="${user.userId}">null</td>
+											<td th:text="${user.name}">null</td>
+											<td th:text="${user.email}">null</td>
+											<td><a class="btn btn-secondary"
+												th:href="'/admin/update-user/'+${user.userId}">Edit</a></td>
+											<td><a class="btn btn-secondary"
+												th:href="'/admin/delete-user/'+${user.userId}">Delete</a></td>
+										</tr>
+									</div>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</main>
+		</div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
+		crossorigin="anonymous"></script>
+	<script src="js/datatables-simple.js"></script>
+
+
+
+	<div th:replace="fragments/footer :: footer" />
 </body>
 </html>

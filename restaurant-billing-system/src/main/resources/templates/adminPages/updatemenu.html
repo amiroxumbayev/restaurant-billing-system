@@ -8,55 +8,93 @@
 </head>
 <body>
     <div th:replace="fragments/header :: header"/>
-    <h1>Update menu item</h1>
-    <form method="POST" th:action="@{'/admin/menueditor/updatemenu/'+${item.id}}" th:object="${item}">
-        <table width="50%">
-            <tr>
-                <td><label for="title">Title: </label></td>
-                <td>
-                <input type="text" th:field="*{title}"  th:value="*{title}"/></td>
-                <td>
-                    <span
-                       class="validationError" th:if="${#fields.hasErrors('title')}"
-                       th:errors="*{title}">error
-                    </span>
-                 </td>
-            </tr>
-            <tr>
-                <td><label for="price">Price: </label></td>
-                <td>
-                    <input type="number" min=0 th:field="*{price}" th:value="*{price}"/>
-                 </td>
-                 <td>
-                    <span
-                       class="validationError" th:if="${#fields.hasErrors('price')}"
-                       th:errors="*{price}">error
-                    </span>
-                 </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="type">Type: </label></td>
-                <td>
-                    <br/><input name="soup" type="radio" value="soup" th:field="*{type}">Soup
-                    <br/><input name="apperizer" type="radio" value="appetizer" th:field="*{type}">Apperizer
-                    <br/><input name="salad" type="radio" value="salad" th:field="*{type}">Salad
-                    <br/><input name="main" type="radio" value="main" th:field="*{type}">Main
-                    <br/><input name="dessert" type="radio" value="dessert" th:field="*{type}">Dessert
-                </td>
-                <td>
-                    <span
-                       class="validationError" th:if="${#fields.hasErrors('type')}"
-                       th:errors="*{type}">error
-                    </span>
-                 </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="submit" value="Save item" /></td>
-            </tr>
-        </table>
-    </form>
+    
+    <div id="layoutSidenav">
+        <div th:replace="fragments/sidenav :: admin" />
+        <div id="layoutSidenav_content">
+
+            <div id="layoutAuthentication">
+                <div id="layoutAuthentication_content">
+                    <main>
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-5">
+                                    <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                        <div class="card-header">
+                                            <h3 class="text-center font-weight-light my-4">Update menu information</h3>
+                                        </div>
+                                        <div class="card-body">
+                                            <form method="POST" th:action="@{'/admin/menueditor/updatemenu/'+${item.id}}" th:object="${item}">
+                                                <div class="form-floating mb-3">
+                                                    <input type="text"
+                                                        class="form-control" th:field="*{title}"  th:value="*{title}">
+                                                        <label>Title</label>
+                                                </div>
+                                                <div>
+                                                    <span
+                                                        class="validationError" th:if="${#fields.hasErrors('title')}"
+                                                        th:errors="*{title}">error
+                                                    </span>
+                                                </div>
+                                                
+                                                <div class="form-floating mb-3">
+                                                    <input type="number"
+                                                        class="form-control" th:field="*{price}"  th:value="*{price}">
+                                                        <label>Price</label>
+                                                </div>
+                                                <div>
+                                                    <span
+                                                        class="validationError" th:if="${#fields.hasErrors('price')}"
+                                                        th:errors="*{price}">error
+                                                    </span>
+                                                </div>
+                                                <div class="form-floating mb-3">
+                                                    <div class="btn-group">
+                                                        <input type="radio" class="btn-check" name="options"
+                                                            id="option1" autocomplete="off" th:field="*{type}"
+                                                            value="soup" />
+                                                        <label class="btn btn-primary"
+                                                            for="option1">Soup</label>
+                                                         <input type="radio"
+                                                            class="btn-check" name="options" id="option2"
+                                                            autocomplete="off" th:field="*{type}" value="appetizer" />
+                                                        <label class="btn btn-primary" for="option2">Appetizer</label>
+                                                        <input type="radio" class="btn-check" name="options"
+                                                            id="option3" autocomplete="off" th:field="*{type}"
+                                                            value="salad" />
+                                                        <label class="btn btn-primary"
+                                                            for="option3">Salad</label>
+                                                        <input type="radio"
+                                                            class="btn-check" name="options" id="option4"
+                                                            autocomplete="off" th:field="*{type}" value="main" />
+                                                        <label
+                                                            class="btn btn-primary" for="option3">Main</label>
+                                                        <input
+                                                            type="radio" class="btn-check" name="options"
+                                                            id="option5" autocomplete="off" th:field="*{type}"
+                                                            value="dessert" />
+                                                        <label class="btn btn-primary"
+                                                            for="option3">Dessert</label>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <span
+                                                        class="validationError" th:if="${#fields.hasErrors('type')}"
+                                                        th:errors="*{type}">error
+                                                    </span>
+                                                </div>
+                                                <input type="submit" value="Save item" />
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+    </div>
     <div th:replace="fragments/footer :: footer"/>
 </body>
 </html>

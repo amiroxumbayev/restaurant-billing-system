@@ -22,19 +22,19 @@ class AdminControllerTest {
     @Test
     @WithMockUser(username="admin",roles={"ADMIN"})
     void givenAdminPageURI_whenMockMVC_thenReturnsAdminViewName() throws Exception {
-        this.mockMvc.perform(get("/admin")).andDo(print()).andExpect(status().isOk()).andExpect(view().name("admin"));
+        this.mockMvc.perform(get("/admin")).andDo(print()).andExpect(status().isOk()).andExpect(view().name("adminPages/admin"));
     }
     
     @Test
     @WithMockUser(username="admin",roles={"ADMIN"})
     void givenMenuEditorPageURI_whenMockMVC_thenReturnsMenuEditorViewName() throws Exception {
-        this.mockMvc.perform(get("/admin/menueditor")).andDo(print()).andExpect(status().isOk()).andExpect(view().name("menueditor"));
+        this.mockMvc.perform(get("/admin/menueditor")).andDo(print()).andExpect(status().isOk()).andExpect(view().name("adminPages/menueditor"));
     }
     
     @Test
     @WithMockUser(username="admin",roles={"ADMIN"})
     void givenAddMenuPageURI_whenMockMVC_thenReturnsAddMenuViewName() throws Exception {
-        this.mockMvc.perform(get("/admin/menueditor/addmenu")).andDo(print()).andExpect(status().isOk()).andExpect(view().name("addmenu"));
+        this.mockMvc.perform(get("/admin/menueditor/addmenu")).andDo(print()).andExpect(status().isOk()).andExpect(view().name("adminPages/addmenu"));
     }
 
 }

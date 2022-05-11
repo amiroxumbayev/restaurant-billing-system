@@ -85,6 +85,7 @@ public class OrderController {
                 totalPrice+=menuRepo.findById(menuRef.getMenuId()).get().getPrice();
             }
             order.setTotalPrice(totalPrice);
+            order.setId(null);
             orderRepo.save(order);
             sessionStatus.setComplete();
             return "redirect:/orders";

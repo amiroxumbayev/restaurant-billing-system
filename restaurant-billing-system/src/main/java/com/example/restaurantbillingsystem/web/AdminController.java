@@ -44,7 +44,7 @@ public class AdminController {
     }
     
     @PostMapping("/update-user/{id}")
-    public String editUser(@Valid User user, @PathVariable("id") Integer id, Errors errors) {
+    public String editUser(@Valid User user, Errors errors, @PathVariable("id") Integer id) {
 
         if (errors.hasErrors()) {
             return "adminPages/updateuser";
@@ -99,7 +99,6 @@ public class AdminController {
 
     @PostMapping("/menueditor/addmenu")
     public String addMenu(@ModelAttribute("newitem") @Valid Menu menu, Errors errors) {
-
         if (errors.hasErrors()) {
             return "adminPages/addmenu";
         }
@@ -110,6 +109,7 @@ public class AdminController {
 
     @PostMapping("/menueditor/updatemenu/{id}")
     public String editsave(@ModelAttribute("item") @Valid Menu menu, @PathVariable("id") Integer id, Errors errors) {
+        System.out.println("dbvdbsdfbsfd");
 
         if (errors.hasErrors()) {
             return "adminPages/updatemenu";

@@ -7,24 +7,31 @@
 </head>
 <body>
 	<div th:replace="fragments/header :: header" />
-	<div class="container">
-	    <div th:replace="fragments/usernavbar :: usernavbar" />
-		<table class="table table-striped">
-			<thead class="thead-dark">
-				<tr>
-					<th scope="col">Id</th>
-					<th scope="col">Title</th>
-					<th scope="col">Price</th>
-				</tr>
-			</thead>
-			<div th:each="item : ${items}">
-				<tr>
-					<td scope="row" th:text="${item.id}">null</td>
-					<td th:text="${item.title}">null</td>
-					<td th:text="${item.price}">null</td>
-				</tr>
-			</div>
-		</table>
+	<div id="layoutSidenav">
+		<div th:replace="fragments/sidenav :: user" />
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid px-4">
+					<h1 class="mt-4">Order items</h1>
+					<table class="table table-striped">
+						<thead class="thead-dark">
+							<tr>
+								<th scope="col">Id</th>
+								<th scope="col">Title</th>
+								<th scope="col">Price</th>
+							</tr>
+						</thead>
+						<div th:each="item : ${items}">
+							<tr>
+								<td scope="row" th:text="${item.id}">null</td>
+								<td th:text="${item.title}">null</td>
+								<td th:text="${item.price}">null</td>
+							</tr>
+						</div>
+					</table>
+				</div>
+			</main>
+		</div>
 	</div>
 	<div th:replace="fragments/footer :: footer" />
 </body>

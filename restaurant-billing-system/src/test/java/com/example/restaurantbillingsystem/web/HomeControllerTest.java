@@ -42,7 +42,7 @@ class HomeControllerTest {
     @Test
     @WithMockUser(username="user",roles={"USER"})
     void givenUserPageURI_whenMockMVC_thenReturnsHomeViewName() throws Exception {
-        this.mockMvc.perform(get("/user")).andDo(print()).andExpect(status().isOk()).andExpect(view().name("home"));
+        this.mockMvc.perform(get("/user")).andDo(print()).andExpect(status().is3xxRedirection()).andExpect(view().name("redirect:/orders"));
     }
     
     @Test

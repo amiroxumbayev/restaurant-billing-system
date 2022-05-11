@@ -6,184 +6,193 @@
 <div th:replace="fragments/header :: header-css" />
 </head>
 <body>
-    <div th:replace="fragments/header :: header" />
-        <div class = "container">
-	        <div class = "row">
-	            <div th:replace="fragments/usernavbar :: usernavbar" />
-	        </div>
-        </div>
-        <h1>Add menu item</h1>
-        <div class = "col-md-1">
-        </div>
-        <div class = "col-md-5">
-	       <form class="form-group" method="POST" th:action="@{/order}" th:object="${order}">
-			        <table>
-			            <tr>
-			                <td>
-			                <label th:for="tablenumber">Table number (between 1 and 20):</label>
-		                    </td>
-			                <td>
-			                <input th:type="number" th:id="quantity" th:field="*{tableNumber}" th:min="1" th:max="20">
-			                </td>
-			                <td>
-			                    <span
-			                       class="validationError" th:if="${#fields.hasErrors('tableNumber')}"
-			                       th:errors="*{tableNumber}">error
-			                    </span>
-			                 </td>
-			            </tr>
-			            <tr>
-			                <td>
-			                    <label for="type">Status: </label></td>
-			                <td>
-			                    <div class="form-check" >
-				                    <input class="form-check-input" name="open" type="radio" value="open" th:field="*{status}">
-				                    <label class="form-check-label">Open</label>
-			                    </div>
-			                    <div class="form-check" >
-		                            <input class="form-check-input" name="reserved" type="radio" value="reserved" th:field="*{status}">
-		                            <label class="form-check-label">Reserved</label>
+	<div th:replace="fragments/header :: header" />
+	<div id="layoutSidenav">
+		<div th:replace="fragments/sidenav :: user" />
+		<div id="layoutSidenav_content">
+			<div id="layoutAuthentication">
+                <div id="layoutAuthentication_content">
+                    <main>
+                        <div class="container">
+                            <div class="row justify-content-between">
+                                <div class="col-lg-3">
+                                    <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                        <div class="card-header">
+                                            <h3 class="text-center font-weight-light my-4">Create order</h3>
+                                        </div>
+                                        <div class="card-body">
+                                            <form method="POST" th:action="@{/order}" th:object="${order}">
+                                                <div class="form-floating mb-3">
+                                                    <input type="number" id="quantity" min="1" max="20" th:field="*{tableNumber}"
+                                                        class="form-control">
+                                                        <label>Table number</label>
+                                                </div>
+                                                <div>
+                                                    <span class="validationError"
+                                                        th:if="${#fields.hasErrors('tableNumber')}"
+                                                        th:errors="*{tableNumber}">error </span>
+                                                </div>
+                                                <div class="form-floating mb-3">
+                                                    <div class="btn-group">
+                                                        <input type="radio" class="btn-check" name="options"
+                                                            id="option1" autocomplete="off" th:field="*{status}"
+                                                            value="open" />
+                                                        <label class="btn btn-primary"
+                                                            for="option1">OPEN</label>
+                                                         <input type="radio"
+                                                            class="btn-check" name="options" id="option2"
+                                                            autocomplete="off" th:field="*{status}" value="reserved" />
+                                                        <label class="btn btn-primary" for="option2">RESERVED</label>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <span class="validationError"
+                                                        th:if="${#fields.hasErrors('status')}"
+                                                        th:errors="*{status}">error </span>
+                                                </div>
+                                                <input type="submit" value="Save item" />
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <h2>Basket</h2>
+                                    <div th:each="menu : ${basket}">
+                                        <label scope="row" th:text="${menu.id}">null</label> <label
+                                            th:text="${menu.title}">null</label> <label th:text="${menu.price}">null</label>
+                                    </div>
+                                </div>>
+                                <div class="col-lg-5">
+		                            <h1>Menu table</h1>
+		
+		                            <h2>Soup</h2>
+		                            <table class="table table-striped">
+		                                <thead class="thead-dark">
+		                                    <tr>
+		                                        <th scope="col">Id</th>
+		                                        <th scope="col">Title</th>
+		                                        <th scope="col">Price</th>
+		                                        <th scope="col"></th>
+		                                    </tr>
+		                                </thead>
+		                                <div th:each="menu : ${soup}">
+		                                    <tr>
+		                                        <td scope="row" th:text="${menu.id}">null</td>
+		                                        <td th:text="${menu.title}">null</td>
+		                                        <td th:text="${menu.price}">null</td>
+		                                        <td>
+		                                            <form method="POST" th:action="'/order/add-item/'+${menu.id}"
+		                                                id="itemForm">
+		                                                <button class="btn btn-secondary">Add</button>
+		                                            </form>
+		                                        </td>
+		                                    </tr>
+		                                </div>
+		                            </table>
+		                            <h2>Appetizer</h2>
+		                            <table class="table table-striped">
+		                                <thead class="thead-dark">
+		                                    <tr>
+		                                        <th scope="col">Id</th>
+		                                        <th scope="col">Title</th>
+		                                        <th scope="col">Price</th>
+		                                        <th scope="col"></th>
+		                                    </tr>
+		                                </thead>
+		                                <div th:each="menu : ${appetizer}">
+		                                    <tr>
+		                                        <td scope="row" th:text="${menu.id}">null</td>
+		                                        <td th:text="${menu.title}">null</td>
+		                                        <td th:text="${menu.price}">null</td>
+		                                        <td>
+		                                            <form method="POST" th:action="'/order/add-item/'+${menu.id}"
+		                                                id="itemForm">
+		                                                <button class="btn btn-secondary">Add</button>
+		                                            </form>
+		                                        </td>
+		                                    </tr>
+		                                </div>
+		                            </table>
+		                            <h2>Salad</h2>
+		                            <table class="table table-striped">
+		                                <thead class="thead-dark">
+		                                    <tr>
+		                                        <th scope="col">Id</th>
+		                                        <th scope="col">Title</th>
+		                                        <th scope="col">Price</th>
+		                                        <th scope="col"></th>
+		                                    </tr>
+		                                </thead>
+		                                <div th:each="menu : ${salad}">
+		                                    <tr>
+		                                        <td scope="row" th:text="${menu.id}">null</td>
+		                                        <td th:text="${menu.title}">null</td>
+		                                        <td th:text="${menu.price}">null</td>
+		                                        <td>
+		                                            <form method="POST" th:action="'/order/add-item/'+${menu.id}"
+		                                                id="itemForm">
+		                                                <button class="btn btn-secondary">Add</button>
+		                                            </form>
+		                                        </td>
+		                                    </tr>
+		                                </div>
+		                            </table>
+		                            <h2>Main</h2>
+		                            <table class="table table-striped">
+		                                <thead class="thead-dark">
+		                                    <tr>
+		                                        <th scope="col">Id</th>
+		                                        <th scope="col">Title</th>
+		                                        <th scope="col">Price</th>
+		                                        <th scope="col"></th>
+		                                    </tr>
+		                                </thead>
+		                                <div th:each="menu : ${main}">
+		                                    <tr>
+		                                        <td scope="row" th:text="${menu.id}">null</td>
+		                                        <td th:text="${menu.title}">null</td>
+		                                        <td th:text="${menu.price}">null</td>
+		                                        <td>
+		                                            <form method="POST" th:action="'/order/add-item/'+${menu.id}"
+		                                                id="itemForm">
+		                                                <button class="btn btn-secondary">Add</button>
+		                                            </form>
+		                                        </td>
+		                                    </tr>
+		                                </div>
+		                            </table>
+		                            <h2>Dessert</h2>
+		                            <table class="table table-striped">
+		                                <thead class="thead-dark">
+		                                    <tr>
+		                                        <th scope="col">Id</th>
+		                                        <th scope="col">Title</th>
+		                                        <th scope="col">Price</th>
+		                                        <th scope="col"></th>
+		                                    </tr>
+		                                </thead>
+		                                <div th:each="menu : ${dessert}">
+		                                    <tr>
+		                                        <td scope="row" th:text="${menu.id}">null</td>
+		                                        <td th:text="${menu.title}">null</td>
+		                                        <td th:text="${menu.price}">null</td>
+		                                        <td>
+		                                            <form method="POST" th:action="'/order/add-item/'+${menu.id}"
+		                                                id="itemForm">
+		                                                <button class="btn btn-secondary">Add</button>
+		                                            </form>
+		                                        </td>
+		                                    </tr>
+		                                </div>
+		                            </table>
 		                        </div>
-			                </td>
-			                <td>
-			                    <span
-			                       class="validationError" th:if="${#fields.hasErrors('status')}"
-			                       th:errors="*{status}">error
-			                    </span>
-			                 </td>
-			            </tr>
-			            <tr>
-			                <td></td>
-			                <td><input class="btn btn-primary" type="submit" value="Create order" /></td>
-			            </tr>
-			        </table>
-	           </form>
-	           <h2>Basket</h2>
-	           <div th:each="menu : ${basket}">
-                   <label scope="row" th:text="${menu.id}">null</label>
-                   <label th:text="${menu.title}">null</label>
-                   <label th:text="${menu.price}">null</label>
+                            </div>
+                        </div>
+                    </main>
                 </div>
             </div>
-	    <div class= "col-md-5">
-		    <h1>Menu table</h1>
-		    
-		    <h2>Soup</h2>
-		    <table class="table table-striped">
-		        <thead class="thead-dark">
-		            <tr>
-		                <th scope="col">Id</th>
-		                <th scope="col">Title</th>
-		                <th scope="col">Price</th>
-		                <th scope="col"></th>
-		            </tr>
-		        </thead>
-		        <div th:each="menu : ${soup}">
-		            <tr>
-		                <td scope="row" th:text="${menu.id}">null</td>
-		                <td th:text="${menu.title}">null</td>
-		                <td th:text="${menu.price}">null</td>
-		                <td>
-			                <form method="POST" th:action="'/order/add-item/'+${menu.id}" id="itemForm">
-                                <button class="btn btn-secondary">Add</button>
-                            </form>
-		                </td>
-		            </tr>
-		        </div>
-		    </table>
-		    <h2>Appetizer</h2>
-		    <table class="table table-striped">
-		        <thead class="thead-dark">
-		            <tr>
-		                <th scope="col">Id</th>
-		                <th scope="col">Title</th>
-		                <th scope="col">Price</th>
-		                <th scope="col"></th>
-		            </tr>
-		        </thead>
-		        <div th:each="menu : ${appetizer}">
-		        <tr>
-		            <td scope="row" th:text="${menu.id}">null</td>
-		            <td th:text="${menu.title}">null</td>
-		            <td th:text="${menu.price}">null</td>
-		            <td>
-                        <form method="POST" th:action="'/order/add-item/'+${menu.id}" id="itemForm">
-                                <button class="btn btn-secondary">Add</button>
-                        </form>
-                    </td>
-		        </tr>
-		        </div>
-		    </table>
-		    <h2>Salad</h2>
-		    <table class="table table-striped">
-		        <thead class="thead-dark">
-		            <tr>
-		                <th scope="col">Id</th>
-		                <th scope="col">Title</th>
-		                <th scope="col">Price</th>
-		                <th scope="col"></th>
-		            </tr>
-		        </thead>
-		        <div th:each="menu : ${salad}">
-		        <tr>
-		            <td scope="row" th:text="${menu.id}">null</td>
-		            <td th:text="${menu.title}">null</td>
-		            <td th:text="${menu.price}">null</td>
-		            <td>
-		                <form method="POST" th:action="'/order/add-item/'+${menu.id}" id="itemForm">
-                                <button class="btn btn-secondary">Add</button>
-                        </form>
-		            </td>
-		        </tr>
-		        </div>
-		    </table>
-		    <h2>Main</h2>
-		    <table class="table table-striped">
-		        <thead class="thead-dark">
-		            <tr>
-		                <th scope="col">Id</th>
-		                <th scope="col">Title</th>
-		                <th scope="col">Price</th>
-		                <th scope="col"></th>
-		            </tr>
-		        </thead>
-		        <div th:each="menu : ${main}">
-		            <tr>
-		                <td scope="row" th:text="${menu.id}">null</td>
-		                <td th:text="${menu.title}">null</td>
-		                <td th:text="${menu.price}">null</td>
-		                <td>
-		                    <form method="POST" th:action="'/order/add-item/'+${menu.id}" id="itemForm">
-                                <button class="btn btn-secondary">Add</button>
-                            </form>
-		                </td>
-		            </tr>
-		        </div>
-		    </table>
-		    <h2>Dessert</h2>
-		    <table class="table table-striped">
-		        <thead class="thead-dark">
-		            <tr>
-		                <th scope="col">Id</th>
-		                <th scope="col">Title</th>
-		                <th scope="col">Price</th>
-		                <th scope="col"></th>
-		            </tr>
-		        </thead>
-		        <div th:each="menu : ${dessert}">
-		            <tr>
-		                <td scope="row" th:text="${menu.id}">null</td>
-		                <td th:text="${menu.title}">null</td>
-		                <td th:text="${menu.price}">null</td>
-		                <td>
-		                    <form method="POST" th:action="'/order/add-item/'+${menu.id}" id="itemForm">
-                                <button class="btn btn-secondary">Add</button>
-                            </form>
-		                </td>
-		            </tr>
-		        </div>
-		  </table>
-	    </div>
-    <div th:replace="fragments/footer :: footer" />
+		</div>
+	</div>
+	<div th:replace="fragments/footer :: footer" />
 </body>
 </html>
